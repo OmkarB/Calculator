@@ -22,6 +22,14 @@ defmodule CalcTest do
   end
 
   test "paren" do
-    assert Calc.eval("1 * (2 + 3)")  == 5
+    assert Calc.eval("2 * (2 + 3)")  == 10
+  end
+
+  test "paren2" do
+    assert Calc.eval("(2 * 2 + 3)")  == 7
+  end
+
+  test "paren3" do
+    assert Calc.eval("(2 * 2) + 3")  == 7
   end
 end

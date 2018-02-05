@@ -26,7 +26,7 @@ defmodule Calc do
     cond do
       n == "(" ->
         list = Enum.concat(["(", op], rest)
-        eval_parens(Enum.join(list, ""))
+        match_group(Enum.join(list, ""))
       op == "-" ->
         eval_stack(n) - eval_stack(rest)
       op == "+" ->
@@ -41,10 +41,10 @@ defmodule Calc do
   def eval_stack([n]), do: String.to_integer(n)
   def eval_stack(n), do: String.to_integer(n)
 
-  def eval_parens(expr) do
+  def match_group(expr) do
     matches = Regex.scan(~r/\((.*)\)/, expr)
-    Enum.each(matches, fn(m) ->
-      [ _| rest] = m
+    Enum.each(matches, fn(x) ->
+      [ _| rest] = x
 
       Enum.each(rest, fn(x) ->
         String.split(rest, "", trim: true)
